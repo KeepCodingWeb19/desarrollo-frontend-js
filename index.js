@@ -1,27 +1,8 @@
-const tweets = [{
-   handler: '@usuario1',
-   date: new Date().toLocaleDateString(),
-   message: 'Eligendi fugiat veniam a neque omnis doloribus sequi porro expedita ullam excepturi.',
-   likes: 40,
- },
- {
-   handler: '@usuario2',
-   date: new Date().toLocaleDateString(),
-   message: 'Laborum ad animi officia dolore nisi necessitatibus a porro! Odit!',
-   likes: 3,
- },
- {
-   handler: '@usuario3',
-   date: new Date().toLocaleDateString(),
-   message: 'Ayer estuve en le parque y me lo pasé genial',
-   likes: 34,
- },
- {
-   handler: '@usuario4',
-   date: new Date().toLocaleDateString(),
-   message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-   likes: 400,
- }];
+
+
+function tweetListController(tweetContainer) {
+
+}
 
 
  // 1- recorrer array de tweets - ok
@@ -39,8 +20,9 @@ const tweets = [{
   section.appendChild(newTweet)
  })
 
- /**
-  * recorrer el array de tweets
-  * acceder a los datos de cada tweet
-  * pintar cada tweet en pantalla
-  */
+
+ // modelo -> obtención de datos
+ // controlador -> orquestar la comunicación entre modelo y vista. Se encarga de gestionar un nodo del DOM.
+ // Es el único que interactúa con el DOM
+ // vista -> preparación del HTML que vamos a gestionar
+
