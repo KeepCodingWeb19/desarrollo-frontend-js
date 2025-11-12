@@ -11,6 +11,11 @@ export function tweetListController(tweetContainer) {
     // el controlador obtiene el HTML del módulo encargado de generar la vista.
     newTweet.innerHTML = buildTweet(tweet)
 
+    newTweet.addEventListener('click', (event) => {
+      // newTweet.remove();
+      event.currentTarget.remove();
+    })
+
     // añadir el tweet al DOM
     tweetContainer.appendChild(newTweet)
   })
