@@ -1,5 +1,5 @@
 import { getTweets } from "./tweet-list.model.js";
-import { buildTweet } from "./tweet-list.view.js";
+import { buildTweet, buildEmptyTweets } from "./tweet-list.view.js";
 
 export async function tweetListController(tweetContainer) {
   let tweetsToShow = [];
@@ -8,6 +8,10 @@ export async function tweetListController(tweetContainer) {
     tweetsToShow = await getTweets();
   } catch (error) {
     alert(error.message)
+  }
+  
+  if (tweetsToShow.length === 0) {
+    tweetContainer.innerHTML = buildEmptyTweets()
   }
 
   tweetsToShow.forEach((tweet) => {

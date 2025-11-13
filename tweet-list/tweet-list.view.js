@@ -4,3 +4,7 @@ export const buildTweet = (tweet) => {
     <h4>${tweet.message}</h4>
   `
 }
+
+export const buildEmptyTweets = () => {
+  return `<p>No hay tweets disponibles</p>`
+}
