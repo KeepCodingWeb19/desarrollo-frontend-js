@@ -2,8 +2,13 @@ import { getTweets } from "./tweet-list.model.js";
 import { buildTweet } from "./tweet-list.view.js";
 
 export async function tweetListController(tweetContainer) {
-  // el controlador tiene que obtener los datos del modelo.
-  const tweetsToShow = await getTweets();
+  let tweetsToShow = [];
+
+  try {
+    tweetsToShow = await getTweets();
+  } catch (error) {
+    alert(error.message)
+  }
 
   tweetsToShow.forEach((tweet) => {
 
