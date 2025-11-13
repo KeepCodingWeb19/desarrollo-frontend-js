@@ -9,7 +9,12 @@ export async function tweetListController(tweetContainer) {
     tweetContainer.dispatchEvent(startEvent);
     tweetsToShow = await getTweets();    
   } catch (error) {
-    alert(error.message)
+    const errorEvent = new CustomEvent('error-fetching-tweets', {
+      detail: {
+        message: error.message
+      }
+    })
+    tweetContainer.dispatchEvent(errorEvent);
   } finally {
     const finishEvent = new CustomEvent('finish-fetching-tweets')
     tweetContainer.dispatchEvent(finishEvent);
