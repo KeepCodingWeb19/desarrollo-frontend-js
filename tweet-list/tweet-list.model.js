@@ -2,7 +2,7 @@ export const getTweets = async () => {
   let tweets = [];
 
     try {
-      const response = await fetch('http://localhost:8000/api/twees');
+      const response = await fetch('http://localhost:8000/api/tweets');
       if (!response.ok) {
         throw new Error();
       }
