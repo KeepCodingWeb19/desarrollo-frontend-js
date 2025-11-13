@@ -3,16 +3,16 @@ import { buildTweet, buildEmptyTweets } from "./tweet-list.view.js";
 
 export async function tweetListController(tweetContainer) {
   let tweetsToShow = [];
-  const loader = document.querySelector(".loader");
+
   try {
-    // muestro interfaz de carga
-    loader.classList.remove("hidden");
+    const startEvent = new CustomEvent('start-fetching-tweets')
+    tweetContainer.dispatchEvent(startEvent);
     tweetsToShow = await getTweets();    
   } catch (error) {
     alert(error.message)
   } finally {
-    // oculto interfaz de carga
-    loader.classList.add("hidden");
+    const finishEvent = new CustomEvent('finish-fetching-tweets')
+    tweetContainer.dispatchEvent(finishEvent);
   }
   
   if (tweetsToShow.length === 0) {
