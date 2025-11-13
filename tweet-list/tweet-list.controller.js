@@ -5,7 +5,10 @@ export async function tweetListController(tweetContainer) {
   let tweetsToShow = [];
 
   try {
+    // muestro interfaz de carga
     tweetsToShow = await getTweets();
+    // oculto interfaz de carga
+    
   } catch (error) {
     alert(error.message)
   }
