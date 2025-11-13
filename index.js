@@ -6,7 +6,7 @@ const loaderContainer = document.querySelector("#loaderContainer");
 const tweetListContainer = document.querySelector("#tweets");
 const notificationsContainer = document.querySelector("#notifications")
 
-notificationsController(notificationsContainer)
+const {showNotification} = notificationsController(notificationsContainer)
 const {show, hide} = loaderController(loaderContainer);
 
 tweetListContainer.addEventListener('start-fetching-tweets', () => {
@@ -17,8 +17,9 @@ tweetListContainer.addEventListener('finish-fetching-tweets', () => {
     // tengo que ocultar la ruleta
     hide();
 })
-tweetListContainer.addEventListener('error-fetching-tweets', () => {
+tweetListContainer.addEventListener('error-fetching-tweets', (event) => {
     // mostrar notificación
+    showNotification(event.detail.message)
 })
 
 tweetListController(tweetListContainer)
