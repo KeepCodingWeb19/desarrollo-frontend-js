@@ -11,7 +11,8 @@ export async function tweetListController(tweetContainer) {
   } catch (error) {
     const errorEvent = new CustomEvent('error-fetching-tweets', {
       detail: {
-        message: error.message
+        message: error.message,
+        type: 'error'
       }
     })
     tweetContainer.dispatchEvent(errorEvent);
