@@ -1,9 +1,18 @@
+import { buildNotification } from "./notifications.view.js";
 
 export function notificationsController(notificationsContainer) {
   const showNotification = (message) => {
-    notificationsContainer.innerHTML = `<h3>${message}</h3>`;
+    const newNotification = document.createElement("div");
+    newNotification.innerHTML = buildNotification(message)
+
+    newNotification.querySelector("button").addEventListener("click", () => {
+      newNotification.remove();
+    })
+
+    notificationsContainer.appendChild(newNotification);
+
     setTimeout(() => {
-      notificationsContainer.innerHTML = '';
+      newNotification.remove();
     }, 5000);
   }
 
