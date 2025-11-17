@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registro de usuarios</h1>
+
+    <form>
+        <label for="email">User email: </label>
+        <input id="email" type="email" placeholder="email" required>
+        <br />
+        <label for="password">password: </label>
+        <input id="password" type="password" required minlength="8">
+        <br />
+        <label for="passwordConfirm">password confirm: </label>
+        <input id="passwordConfirm" type="password" required minlength="8">
+        <br />
+
+        <button type="submit">Create user</button>
+    </form>
+
+    <script type="module" src="./signup.js"></script>
+</body>
+</html>
+
+- todos los campos son obligatorios. OK
+- email válido. OK
+- las contraseñas sean iguales. --> se hará en JS
+- la contraseña tenga más de 8 caracteres. OK
