@@ -16,6 +16,8 @@ export const loginUser = async (email, password) => {
       throw new Error(data.message, { cause: "data" });
     }
 
+    return data.accessToken;
+
   } catch (error) {
     const errorMessage = error.cause === "data" ? error.message : "Error iniciando sesión";
     throw new Error(errorMessage)
