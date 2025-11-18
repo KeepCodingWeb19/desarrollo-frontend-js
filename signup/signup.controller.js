@@ -1,8 +1,9 @@
+import { createUser } from "./signup.model.js";
+
 export const signupController = (signupForm) => {
 
-  signupForm.addEventListener("submit", (event) => {
+  signupForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    // let isFormValid = true;
     const errors = []
 
     const password = signupForm.querySelector("#password");
@@ -11,7 +12,6 @@ export const signupController = (signupForm) => {
 
     const emailRegExp = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
     if (!emailRegExp.test(email.value)) {
-      // isFormValid = false;
       const validationErrorEvent = new CustomEvent('signup-validation-error', {
         detail: {
           message: "El email no es válido",
@@ -22,7 +22,6 @@ export const signupController = (signupForm) => {
     }
 
     if (password.value !== passwordConfirmation.value) {
-      // isFormValid = false;
       const validationErrorEvent = new CustomEvent('signup-validation-error', {
         detail: {
           message: "Las contraseñas no coinciden",
@@ -38,7 +37,15 @@ export const signupController = (signupForm) => {
 
     // si no hay errores, llamo al api
     if (errors.length === 0) {
-      // consumir api
+      try {
+        await createUser(email.value, password.value)
+        alert("usuario creado correctametne");
+        setTimeout(() => {
+          window.location.href = '/'
+        }, 3000);
+      } catch (error) {
+        alert(error.message)
+      }
     }
 
   })
