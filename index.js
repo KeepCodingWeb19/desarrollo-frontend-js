@@ -1,13 +1,16 @@
 import { loaderController } from "./loader/loader.controller.js";
 import { notificationsController } from "./notifications/notifications.controller.js";
+import { sessionController } from "./session/session.controller.js";
 import { tweetListController } from "./tweet-list/tweet-list.controller.js";
 
 const loaderContainer = document.querySelector("#loaderContainer");
 const tweetListContainer = document.querySelector("#tweets");
 const notificationsContainer = document.querySelector("#notifications")
+const sessionContainer = document.querySelector("header")
 
 const {showNotification} = notificationsController(notificationsContainer)
 const {show, hide} = loaderController(loaderContainer);
+sessionController(sessionContainer);
 
 tweetListContainer.addEventListener('start-fetching-tweets', () => {
     // tengo que mostrar la ruleta

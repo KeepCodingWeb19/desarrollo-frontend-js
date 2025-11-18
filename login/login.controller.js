@@ -28,7 +28,7 @@ export const loginController = (loginForm) => {
     if (errors.length === 0) {
       try {
         const token = await loginUser(email, password);
-        localStorage.setItem("token", token);
+        localStorage.setItem(constants.tokenKey, token);
         setTimeout(() => {
           window.location.href = "/"
         }, 4000)
