@@ -1,3 +1,4 @@
+import { constants } from "../utils/constants.js";
 import { createUser } from "./signup.model.js";
 
 export const signupController = (signupForm) => {
@@ -10,7 +11,7 @@ export const signupController = (signupForm) => {
     const passwordConfirmation = signupForm.querySelector("#passwordConfirm");
     const email = signupForm.querySelector("#email");
 
-    const emailRegExp = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+    const emailRegExp = new RegExp(constants.mailRegExp);
     if (!emailRegExp.test(email.value)) {
       const validationErrorEvent = new CustomEvent('signup-validation-error', {
         detail: {

@@ -13,11 +13,11 @@ export const createUser = async (email, password) => {
 
       const data = await response.json()
       if (!response.ok) {
-        throw new Error(data.message);
+        throw new Error(data.message, { cause: "data" });
       }
       
     } catch (error) {
-      const errorMessage = error ? error.message : "Error creando un usuario";
+      const errorMessage = error.cause === "data" ? error.message : "Error creando un usuario";
       throw new Error(errorMessage)
     }
 }
