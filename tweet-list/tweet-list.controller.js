@@ -28,12 +28,12 @@ export async function tweetListController(tweetContainer) {
   tweetsToShow.forEach((tweet) => {
 
     const newTweet = document.createElement('div');
+    newTweet.classList.add("tweet")
     // el controlador obtiene el HTML del módulo encargado de generar la vista.
     newTweet.innerHTML = buildTweet(tweet)
 
     newTweet.addEventListener('click', (event) => {
-      // newTweet.remove();
-      event.currentTarget.remove();
+      window.location.href = `/tweet-detail.html?tweetId=${tweet.id}`
     })
 
     // añadir el tweet al DOM
