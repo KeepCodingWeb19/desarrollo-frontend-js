@@ -2,11 +2,17 @@ import { createTweet } from "./createTweet.model.js";
 
 export const createTweetController = (createTweetForm) => {
   
-  createTweetForm.addEventListener('submit', (event) => {
+  createTweetForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const tweetContent = createTweetForm.querySelector("#tweetContent").value
 
-    createTweet(tweetContent)
+    try {
+      await createTweet(tweetContent)
+      alert("tweet creado crrectamente");
+      window.location.href = '/'
+    } catch (error) {
+      alert(error)
+    }
   })
 }

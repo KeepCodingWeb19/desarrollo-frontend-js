@@ -1,7 +1,8 @@
 export const buildTweet = (tweet) => {
+  const createdAt = new Date(tweet.createdAt);
   return `
-    <h3>${tweet.handler} escribió el ${tweet.date}: </h3>
-    <h4>${tweet.message}</h4>
+    <h3>${tweet.user.username} escribió el ${createdAt.toLocaleString()}: </h3>
+    <h4>${tweet.content}</h4>
   `
 }
 
