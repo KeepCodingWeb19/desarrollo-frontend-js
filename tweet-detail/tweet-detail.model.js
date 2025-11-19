@@ -17,6 +17,23 @@ export const getTweetDetail = async (tweetId) => {
   return tweet;
 }
 
+export const removeTweet = async (tweetId) => {
+  const token = localStorage.getItem(constants.tokenKey)
+  try {
+      const response = await fetch(`http://localhost:8000/api/tweets/${tweetId}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error();
+      }
+    } catch (error) {
+      throw new Error("El tweet no existe")
+    }
+}
+
 export const getUserData = async () => {
   let userData = null;
   const token = localStorage.getItem(constants.tokenKey)

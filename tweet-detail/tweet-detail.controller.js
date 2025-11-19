@@ -1,4 +1,4 @@
-import { getTweetDetail, getUserData } from "./tweet-detail.model.js"
+import { getTweetDetail, getUserData, removeTweet } from "./tweet-detail.model.js"
 import { buildTweetDetail } from "./tweet-detail.view.js"
 
 // user esta imagen para el detalle del tweet si el tweet obtenido por sparrest no tiene imagen.
@@ -6,13 +6,24 @@ import { buildTweetDetail } from "./tweet-detail.view.js"
 
 export const tweetDetailController = async (tweetDetailContainer, tweetId) => {
 
-    const handleRemoveTweetButton = () => {
-        
+    const handleRemoveTweetButton = (userData, tweet) => {
+        if (userData.id === tweet.userId) {
+            const removeButton = document.createElement("button");
+            removeButton.textContent = 'Eliminar tweet';
+            tweetDetailContainer.appendChild(removeButton);
+            removeButton.addEventListener("click", async () => {
+                const shouldRemoveTweet = confirm("Seguro que desea borrar el tweet?");
+                if (shouldRemoveTweet) {
+                    await removeTweet(tweet.id);
+                    window.location.href = '/'
+                }
+            })
+        }
     }
 
-
+    let tweet = null;
     try {
-        const tweet = await getTweetDetail(tweetId)
+        tweet = await getTweetDetail(tweetId)
         tweetDetailContainer.innerHTML = buildTweetDetail(tweet)
     } catch (error) {
         alert(error)
@@ -21,7 +32,7 @@ export const tweetDetailController = async (tweetDetailContainer, tweetId) => {
     
     try {
         const userData = await getUserData()
-        handleRemoveTweetButton()        
+        handleRemoveTweetButton(userData, tweet)        
     } catch (error) {
         
     }
